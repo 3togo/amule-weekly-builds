@@ -1,0 +1,22 @@
+Source: amule-weekly
+Section: net
+Priority: optional
+Maintainer: FreeToGo <731338+3togo@users.noreply.github.com>
+Build-Depends: debhelper-compat (= 13), cmake, gettext,
+ libayatana-appindicator3-dev, libboost-dev, libcrypto++-dev,
+ libglib2.0-dev, libmaxminddb-dev, libreadline-dev, libupnp-dev,
+ libwxgtk3.2-dev, pkgconf, python3, zlib1g-dev
+Standards-Version: 4.6.2
+Rules-Requires-Root: no
+Homepage: https://www.amule.org/
+
+Package: amule-weekly
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Recommends: ffmpeg
+Conflicts: amule, amule-common, amule-daemon, amule-utils, amule-utils-gui
+Description: weekly development snapshot of the aMule client and daemon
+ aMule is a client for the eD2k and Kademlia networks.
+ This package includes the desktop client, remote GUI, headless daemon,
+ command line client, ed2k link handler and REST API with its web interface.
+ It replaces the distribution's aMule packages while installed.

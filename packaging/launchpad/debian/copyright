@@ -1,0 +1,13 @@
+aMule upstream source: https://github.com/amule-org/amule
+Copyright (C) 2003-2026 aMule Team (https://amule-org.github.io)
+Copyright (C) 2002-2011 Merkur (devs@emule-project.net)
+Additional copyrights belong to the authors named in the source files.
+
+aMule is distributed under the GNU General Public License, version 2 or
+later. Some source files have GPL version 3 or later notices; see the
+individual files. Both license texts are available on Debian/Ubuntu in
+/usr/share/common-licenses/GPL-2 and /usr/share/common-licenses/GPL-3.
+
+The bundled picojson code is under the BSD 2-Clause license. Its complete
+copyright notice and license text, and notices for the other third-party
+components, are reproduced in THIRDPARTY.md in this documentation directory.

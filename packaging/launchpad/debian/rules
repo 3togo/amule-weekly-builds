@@ -1,0 +1,24 @@
+#!/usr/bin/make -f
+
+include /usr/share/dpkg/pkg-info.mk
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
+%:
+	dh $@ --buildsystem=cmake
+
+override_dh_auto_configure:
+	dh_auto_configure -- \
+		-DCMAKE_BUILD_TYPE=Release \
+		-DCMAKE_INSTALL_DOCDIR=share/doc/amule-weekly \
+		-DGITDATE="weekly $(DEB_VERSION_UPSTREAM)" \
+		-DENABLE_CCACHE=OFF -DENABLE_BFD=OFF \
+		-DENABLE_VERSION_CHECK=OFF \
+		-DBUILD_DAEMON=ON -DBUILD_REMOTEGUI=ON \
+		-DBUILD_AMULECMD=ON -DBUILD_AMULEAPI=ON \
+		-DBUILD_TESTING=OFF
+
+override_dh_auto_test:
+	# The source CI runs tests; package builds require no display or network.
+
+execute_after_dh_auto_install:
+	rm -f debian/amule-weekly/usr/share/doc/amule-weekly/INSTALL.md

@@ -1,0 +1,40 @@
+name: Weekly Launchpad build
+
+on:
+  schedule:
+    - cron: '17 3 * * 1'  # Monday 03:17 UTC; GitHub may delay scheduled jobs.
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: launchpad-weekly
+  cancel-in-progress: false
+
+jobs:
+  request-builds:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - run: sudo apt-get update && sudo apt-get install -y python3-launchpadlib
+      - name: Request builds on Launchpad
+        env:
+          LP_CREDENTIALS: ${{ secrets.LAUNCHPAD_CREDENTIALS }}
+          LP_OWNER: ${{ vars.LAUNCHPAD_OWNER }}
+          LP_PPA: amule-weekly
+          LP_RECIPE: amule-weekly
+          LP_SERIES: noble resolute
+        shell: bash
+        run: |
+          set -euo pipefail
+          : "${LP_OWNER:?Set the LAUNCHPAD_OWNER repository variable}"
+          : "${LP_CREDENTIALS:?Set the LAUNCHPAD_CREDENTIALS repository secret}"
+          credential_file=$(mktemp)
+          trap 'rm -f "$credential_file"' EXIT
+          printf '%s' "$LP_CREDENTIALS" > "$credential_file"
+          read -ra series <<< "$LP_SERIES"
+          /usr/bin/python3 packaging/launchpad/request-builds.py \
+            --owner "$LP_OWNER" --ppa "$LP_PPA" --recipe "$LP_RECIPE" \
+            --series "${series[@]}" --credentials "$credential_file"
