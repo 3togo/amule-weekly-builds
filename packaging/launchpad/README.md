@@ -13,7 +13,9 @@ The public GitHub repository `3togo/amule-weekly-builds` owns the weekly schedul
 Both release targets were built locally from upstream commit
 `20feb713f709e2694e3558692ddcacfed2dd9047` on 2026-10-20. Package installation,
 command-line version output, installed web interface files, recipe assembly,
-and lintian were checked. The first live Launchpad build is being verified.
+and lintian were checked. The first [GitHub request run](https://github.com/3togo/amule-weekly-builds/actions/runs/39467566079)
+passed and submitted both Launchpad builds. Their source and binary build
+status is available from the PPA and recipe pages.
 
 Launchpad imports upstream into
 [`~freetogo/amule/+git/amule`](https://code.launchpad.net/~freetogo/amule/+git/amule).
