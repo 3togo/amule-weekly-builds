@@ -5,20 +5,20 @@ builds and publishes the Ubuntu binaries; a weekly GitHub Actions job requests
 the builds. Launchpad's built-in recipe scheduler supports daily builds, so
 leave **Build daily** unchecked for a weekly schedule.
 
-The files here are preparation templates. They have not been activated on
-Launchpad. The packaging maintainer uses the account owner’s public GitHub noreply
-address. The starting targets are Ubuntu 24.04
-(`noble`) and 26.04 (`resolute`). Both were built locally for amd64 from
-upstream commit `20feb713f709e2694e3558692ddcacfed2dd9047` on 2026-10-20.
-Package installation, command-line version output, and the installed web
-interface files were checked in the corresponding Ubuntu containers. The
-recipe was assembled locally and its source package checked with lintian.
-Still verify the first real Launchpad builds before enabling the schedule.
+The public [PPA](https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly)
+and [recipe](https://code.launchpad.net/~freetogo/+recipe/amule-weekly) are configured
+for Ubuntu 24.04 (`noble`) and 26.04 (`resolute`), amd64. Daily builds are disabled.
+The private GitHub repository `3togo/amule-weekly-builds` owns the weekly schedule.
 
-The packaging Git branch is published on Launchpad through SSH. PPA creation,
-the upstream Git import, recipe registration, and scheduler activation are
-pending: HTTPS connections to Launchpad failed during TLS negotiation from
-the setup machine. SSH access does not provide these website/API operations.
+Both release targets were built locally from upstream commit
+`20feb713f709e2694e3558692ddcacfed2dd9047` on 2026-10-20. Package installation,
+command-line version output, installed web interface files, recipe assembly,
+and lintian were checked. The first live Launchpad build is being verified.
+
+Launchpad imports upstream into
+[`~freetogo/amule/+git/amule`](https://code.launchpad.net/~freetogo/amule/+git/amule).
+The separate public packaging repository contains only the packaging overlay.
+The packaging maintainer uses the account owner's public GitHub noreply address.
 
 ## Package contents
 
@@ -34,7 +34,7 @@ Updates come through apt; aMule's own update check is disabled.
    desired architectures, starting with amd64. Ensure the owner has accepted
    Launchpad's PPA terms.
 2. Import `https://github.com/amule-org/amule.git` into a Launchpad Git
-   repository named `amule` under that owner. Wait for a successful import.
+   repository named `amule` under owner `freetogo` and project `amule`. Wait for a successful import.
 3. Push the packaging files to the Launchpad Git repository
    `git+ssh://freetogo@git.launchpad.net/~freetogo/+git/amule-packaging`,
    on branch `packaging/launchpad-weekly`. This repository needs only
@@ -47,8 +47,8 @@ Updates come through apt; aMule's own update check is disabled.
 
 The recipe nests only the packaging directory into the live upstream source.
 It never builds a frozen copy of upstream from the packaging branch. The
-version includes the build timestamp and Ubuntu series so new uploads and
-builds for separate releases have distinct versions. Revisit the `3.1.0` base
+version template includes a build timestamp. Launchpad constructs the final
+per-release source package versions. Revisit the `3.1.0` base
 when upstream releases a new version.
 
 ## Authorize the weekly trigger
