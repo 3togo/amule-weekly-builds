@@ -66,11 +66,13 @@
       "recipe_build": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+recipebuild/4103830",
       "published": false,
       "binary_builds": [],
-      "recipe_state": "Currently building",
-      "build_log": null,
+      "recipe_state": "Uploading build",
+      "build_log": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+recipebuild/4103830/+files/buildlog.txt.gz",
       "upload_log": null,
-      "stage": "Waiting for source build"
+      "version": "3.1.0+git202610201948~ubuntu26.10.1",
+      "source_states": [],
+      "stage": "Waiting for source upload/publication"
     }
   ],
-  "updated_at": "2026-10-20T19:45:27.598928+00:00"
+  "updated_at": "2026-10-20T19:57:08.973962+00:00"
 }
