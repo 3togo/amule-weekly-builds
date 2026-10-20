@@ -23,7 +23,7 @@ VERSION = '3.1.0+git202610201739~ubuntu24.04.1'
 class PublicationTests(unittest.TestCase):
     def check(self, recipe_state='Successfully built', source=True,
               binary_state='Successfully built', published=True,
-              index_version=VERSION, source_version=VERSION):
+              index_version=VERSION, source_version=VERSION, manual=False):
         build = {'buildstate': recipe_state, 'build_log_url': 'https://example.test/log'}
         source_record = {'self_link': ARCHIVE + '/+sourcepub/1', 'status': 'Published',
                          'source_package_version': source_version,
@@ -47,10 +47,23 @@ class PublicationTests(unittest.TestCase):
                 return None
             return gzip.compress(f'Package: amule-weekly\nVersion: {index_version}\nArchitecture: amd64\n\n'.encode())
 
-        with patch.object(monitor, 'api', return_value=build), \
+        with patch.object(monitor, 'api', return_value=build) as get_build, \
                 patch.object(monitor, 'entries', side_effect=entries), \
                 patch.object(monitor, 'fetch', side_effect=fetch):
-            return monitor.check_target(TARGET, ARCHIVE)
+            target = {**TARGET, 'version': VERSION} if manual else TARGET
+            result = monitor.check_target(target, ARCHIVE)
+            if manual:
+                get_build.assert_not_called()
+            return result
+
+    def test_manual_upload_checks_exact_version_without_recipe(self):
+        self.assertTrue(self.check(manual=True)['published'])
+        self.assertFalse(self.check(manual=True, index_version='old')['published'])
+
+    def test_manual_upload_pending_acceptance(self):
+        result = self.check(manual=True, source=False)
+        self.assertFalse(result['published'])
+        self.assertNotIn('error', result)
 
     def test_uploading_is_pending(self):
         result = self.check(recipe_state='Uploading build', source=False)

@@ -35,4 +35,6 @@ The [publication monitor](https://github.com/3togo/amule-weekly-builds/actions/w
 
 Progress changes are committed to `status/publication.json`. Each run has a summary with build links; failed builds or HTTP/API errors fail the workflow with diagnostic annotations. Pending publication is a successful check, not a claim that packages are ready. Configure GitHub Actions notifications in your GitHub account to receive failed-run alerts.
 
+For signed manual source uploads, a target in `status/last-request.json` can specify an explicit `version` and use the PPA URL as its `url`. The monitor then follows that exact source version through binary builds and APT publication without depending on a recipe build. The next weekly request replaces these targets with the new recipe builds as usual.
+
 Once both versions are available, scheduled runs skip network polling. The next weekly request automatically starts monitoring again. This monitor uses public endpoints and needs no Launchpad credentials. It reports blockers; packaging fixes still require a code change.

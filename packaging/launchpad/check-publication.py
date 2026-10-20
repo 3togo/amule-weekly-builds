@@ -76,26 +76,30 @@ def check_target(target, archive):
     result = {'series': target['series'], 'recipe_build': target['url'],
               'published': False, 'binary_builds': []}
     try:
-        build = api(api_url(target['url']))
-        result['recipe_state'] = build['buildstate']
-        result['build_log'] = build.get('build_log_url')
-        result['upload_log'] = build.get('upload_log_url')
-        if build['buildstate'] in FAILED:
-            result['error'] = 'Recipe build: ' + build['buildstate']
-            return result
-        log_url = build.get('build_log_url')
-        if not log_url:
-            result['stage'] = 'Waiting for source build'
-            return result
-        log = fetch(log_url)
-        if log.startswith(b'\x1f\x8b'):
-            log = gzip.decompress(log)
-        versions = re.findall(rb'^dpkg-buildpackage: info: source version (\S+)',
-                              log, re.MULTILINE)
-        if not versions:
-            result['stage'] = 'Waiting for source package version in build log'
-            return result
-        version = versions[-1].decode()
+        version = target.get('version')
+        if version:
+            result['recipe_state'] = 'Manual source upload'
+        else:
+            build = api(api_url(target['url']))
+            result['recipe_state'] = build['buildstate']
+            result['build_log'] = build.get('build_log_url')
+            result['upload_log'] = build.get('upload_log_url')
+            if build['buildstate'] in FAILED:
+                result['error'] = 'Recipe build: ' + build['buildstate']
+                return result
+            log_url = build.get('build_log_url')
+            if not log_url:
+                result['stage'] = 'Waiting for source build'
+                return result
+            log = fetch(log_url)
+            if log.startswith(b'\x1f\x8b'):
+                log = gzip.decompress(log)
+            versions = re.findall(rb'^dpkg-buildpackage: info: source version (\S+)',
+                                  log, re.MULTILINE)
+            if not versions:
+                result['stage'] = 'Waiting for source package version in build log'
+                return result
+            version = versions[-1].decode()
         result['version'] = version
         sources = list(entries(api_url(archive), **{
             'ws.op': 'getPublishedSources', 'source_name': 'amule-weekly',
@@ -107,11 +111,14 @@ def check_target(target, archive):
             if (source['source_package_version'] != version
                     or not source['distro_series_link'].endswith('/' + target['series'])):
                 continue
+            result['stage'] = 'Source accepted; waiting for publication'
             for binary in entries(api_url(source['self_link']), **{'ws.op': 'getBuilds'}):
                 result['binary_builds'].append({
                     'url': binary['web_link'], 'state': binary['buildstate'],
                     'log': binary.get('build_log_url'),
                     'architecture': binary['arch_tag']})
+            if result['binary_builds']:
+                result['stage'] = 'Waiting for binary builds and publication'
             if source['status'] != 'Published':
                 continue
             result['stage'] = 'Waiting for amd64 binary publication'
@@ -168,7 +175,7 @@ def main():
         args.status.parent.mkdir(parents=True, exist_ok=True)
         args.status.write_text(json.dumps(result, indent=2) + '\n')
     lines = ['## aMule PPA publication', '',
-             '| Ubuntu | Recipe build | Version | Publication |',
+             '| Ubuntu | Source build/upload | Version | Publication |',
              '| --- | --- | --- | --- |']
     for build in builds:
         message = build.get('error', build.get('stage', 'Pending'))
