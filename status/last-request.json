@@ -1,0 +1,15 @@
+{
+  "requested_at": "2026-10-20T17:36:59.280702+00:00",
+  "recipe": "https://code.launchpad.net/~freetogo/+recipe/amule-weekly",
+  "archive": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly",
+  "builds": [
+    {
+      "series": "noble",
+      "url": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+recipebuild/4103687"
+    },
+    {
+      "series": "resolute",
+      "url": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+recipebuild/4103688"
+    }
+  ]
+}
