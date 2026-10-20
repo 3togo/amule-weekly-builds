@@ -4,7 +4,7 @@ This repository requests weekly builds of [amule-org/amule](https://github.com/a
 
 - PPA: [freetogo/amule-weekly](https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly)
 - Recipe: [amule-weekly](https://code.launchpad.net/~freetogo/+recipe/amule-weekly)
-- Ubuntu targets: 24.04 (noble) and 26.04 (resolute), amd64
+- Ubuntu targets: 24.04 (noble), 26.04 (resolute), and 26.10 (stonking), amd64
 - Schedule: Mondays at 03:17 UTC, plus manual workflow dispatch
 
 Launchpad imports upstream master and builds the packages. GitHub Actions requests builds and monitors publication. Launchpad's daily build option stays disabled.
@@ -17,7 +17,7 @@ See [packaging setup](packaging/launchpad/README.md) for package details and loc
 
 ## Installation
 
-After packages are published, on Ubuntu 24.04 or 26.04:
+After packages are published, on Ubuntu 24.04, 26.04, or 26.10:
 
 ```sh
 sudo add-apt-repository ppa:freetogo/amule-weekly
@@ -29,7 +29,7 @@ The package includes the desktop client, daemon, remote GUI, command-line client
 
 ## Build status
 
-The [publication monitor](https://github.com/3togo/amule-weekly-builds/actions/workflows/publication.yml) checks both requested Ubuntu builds every 10 minutes on GitHub-hosted runners, including when your computer is off. GitHub may delay scheduled runs. You can also run it manually from Actions.
+The [publication monitor](https://github.com/3togo/amule-weekly-builds/actions/workflows/publication.yml) checks all three requested Ubuntu builds every 10 minutes on GitHub-hosted runners, including when your computer is off. GitHub may delay scheduled runs. You can also run it manually from Actions.
 
 [Latest request records](status/last-request.json) identify the source builds. The monitor reads the exact source version from each build log, follows its binary builds, and requires both Launchpad's Published status and that exact version in the corresponding amd64 APT package index. Old packages cannot satisfy a new request.
 
@@ -37,4 +37,4 @@ Progress changes are committed to `status/publication.json`. Each run has a summ
 
 For signed manual source uploads, a target in `status/last-request.json` can specify an explicit `version` and use the PPA URL as its `url`. The monitor then follows that exact source version through binary builds and APT publication without depending on a recipe build. The next weekly request replaces these targets with the new recipe builds as usual.
 
-Once both versions are available, scheduled runs skip network polling. The next weekly request automatically starts monitoring again. This monitor uses public endpoints and needs no Launchpad credentials. It reports blockers; packaging fixes still require a code change.
+Once all versions are available, scheduled runs skip network polling. The next weekly request automatically starts monitoring again. This monitor uses public endpoints and needs no Launchpad credentials. It reports blockers; packaging fixes still require a code change.

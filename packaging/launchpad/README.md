@@ -7,7 +7,7 @@ leave **Build daily** unchecked for a weekly schedule.
 
 The public [PPA](https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly)
 and [recipe](https://code.launchpad.net/~freetogo/+recipe/amule-weekly) are configured
-for Ubuntu 24.04 (`noble`) and 26.04 (`resolute`), amd64. Daily builds are disabled.
+for Ubuntu 24.04 (`noble`), 26.04 (`resolute`), and 26.10 (`stonking`), amd64. Daily builds are disabled.
 The public GitHub repository `3togo/amule-weekly-builds` owns the weekly schedule.
 
 Both release targets were built locally from upstream commit

@@ -25,7 +25,7 @@ jobs:
           LP_OWNER: ${{ vars.LAUNCHPAD_OWNER }}
           LP_PPA: amule-weekly
           LP_RECIPE: amule-weekly
-          LP_SERIES: noble resolute
+          LP_SERIES: noble resolute stonking
         shell: bash
         run: |
           set -euo pipefail

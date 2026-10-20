@@ -160,10 +160,10 @@ def main():
     # Compare actual build URLs as well as timestamp so a replacement is monitored.
     identity = {key: request[key] for key in ('requested_at', 'archive', 'builds')}
     if previous.get('request') == identity and previous.get('complete'):
-        print('Both requested versions are already verified in the PPA APT indexes.')
+        print('All requested versions are already verified in the PPA APT indexes.')
         return 0
-    if {build['series'] for build in request['builds']} != {'noble', 'resolute'}:
-        raise ValueError('The request must include both noble and resolute')
+    if {build['series'] for build in request['builds']} != {'noble', 'resolute', 'stonking'}:
+        raise ValueError('The request must include noble, resolute, and stonking')
     with ThreadPoolExecutor(max_workers=2) as pool:
         builds = list(pool.map(lambda target: check_target(target, request['archive']),
                                request['builds']))
@@ -188,7 +188,7 @@ def main():
             error = build['error'].replace('%', '%25').replace('\r', '%0D').replace('\n', '%0A')
             print(f'::error title={build["series"]} publication check::{error}')
     if result['complete']:
-        lines.extend(['', 'Both packages are available. Network polling stops until the next build request.'])
+        lines.extend(['', 'All packages are available. Network polling stops until the next build request.'])
     summary = '\n'.join(lines) + '\n'
     print(summary)
     if os.environ.get('GITHUB_STEP_SUMMARY'):

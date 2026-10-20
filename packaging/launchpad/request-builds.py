@@ -13,7 +13,7 @@ def main():
     parser.add_argument('--owner', required=True)
     parser.add_argument('--ppa', default='amule-weekly')
     parser.add_argument('--recipe', default='amule-weekly')
-    parser.add_argument('--series', nargs='+', default=['noble', 'resolute'])
+    parser.add_argument('--series', nargs='+', default=['noble', 'resolute', 'stonking'])
     parser.add_argument('--credentials', type=Path, required=True)
     parser.add_argument('--authorize', action='store_true',
                         help='authorize a new OAuth token in the browser')

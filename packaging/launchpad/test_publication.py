@@ -93,11 +93,13 @@ class PublicationTests(unittest.TestCase):
         data = b'Package: other\nVersion: expected\nArchitecture: amd64\n\nPackage: amule-weekly\nVersion: old\nArchitecture: amd64\n'
         self.assertEqual(monitor.package_versions(data), {'old'})
 
-    def test_both_series_required_and_new_requests_resume(self):
+    def test_all_series_required_and_new_requests_resume(self):
         with tempfile.TemporaryDirectory() as directory:
             request_path, status_path = [Path(directory) / name for name in ('request.json', 'status.json')]
             request = {'requested_at': 'today', 'archive': ARCHIVE,
-                       'builds': [TARGET, {**TARGET, 'series': 'resolute', 'url': ARCHIVE + '/+recipebuild/2'}]}
+                       'builds': [TARGET,
+                                  {**TARGET, 'series': 'resolute', 'url': ARCHIVE + '/+recipebuild/2'},
+                                  {**TARGET, 'series': 'stonking', 'url': ARCHIVE + '/+recipebuild/3'}]}
             request_path.write_text(json.dumps(request))
             arguments = ['check', '--request', str(request_path), '--status', str(status_path)]
             def run(results):
@@ -106,14 +108,14 @@ class PublicationTests(unittest.TestCase):
                     return check.call_count
             def result(series, done):
                 return {'series': series, 'recipe_build': TARGET['url'], 'published': done, 'binary_builds': []}
-            self.assertEqual(run([result('noble', True), result('resolute', False)]), 2)
+            self.assertEqual(run([result('noble', True), result('resolute', True), result('stonking', False)]), 3)
             self.assertFalse(json.loads(status_path.read_text())['complete'])
-            self.assertEqual(run([result('noble', True), result('resolute', True)]), 2)
+            self.assertEqual(run([result('noble', True), result('resolute', True), result('stonking', True)]), 3)
             self.assertTrue(json.loads(status_path.read_text())['complete'])
             self.assertEqual(run([]), 0)
             request['builds'][0]['url'] += '0'
             request_path.write_text(json.dumps(request))
-            self.assertEqual(run([result('noble', False), result('resolute', False)]), 2)
+            self.assertEqual(run([result('noble', False), result('resolute', False), result('stonking', False)]), 3)
 
 
 if __name__ == '__main__':

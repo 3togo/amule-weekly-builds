@@ -23,7 +23,7 @@ jobs:
         run: git pull --ff-only origin main
       - name: Verify publication detection
         run: python3 -m unittest discover -s packaging/launchpad -p test_publication.py
-      - name: Check both builds and PPA indexes
+      - name: Check all builds and PPA indexes
         run: python3 packaging/launchpad/check-publication.py
       - name: Record publication progress
         if: always()
