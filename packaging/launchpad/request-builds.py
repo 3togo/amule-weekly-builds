@@ -3,6 +3,8 @@
 
 import argparse
 import configparser
+from datetime import datetime, timezone
+import json
 from pathlib import Path
 
 
@@ -17,6 +19,8 @@ def main():
                         help='authorize a new OAuth token in the browser')
     parser.add_argument('--dry-run', action='store_true',
                         help='check recipe and targets without requesting builds')
+    parser.add_argument('--request-record', type=Path,
+                        help='write public build request URLs to a JSON file')
     args = parser.parse_args()
 
     if not args.authorize:
@@ -54,10 +58,20 @@ def main():
         print(f'{recipe.web_link} -> {archive.web_link} ({series.name})')
     if args.dry_run:
         return
+    builds = []
     for series in targets:
         build = recipe.requestBuild(archive=archive, distroseries=series,
                                     pocket='Release')
         print(f'Requested: {build.web_link}')
+        builds.append({'series': series.name, 'url': build.web_link})
+    if args.request_record:
+        args.request_record.parent.mkdir(parents=True, exist_ok=True)
+        args.request_record.write_text(json.dumps({
+            'requested_at': datetime.now(timezone.utc).isoformat(),
+            'recipe': recipe.web_link,
+            'archive': archive.web_link,
+            'builds': builds,
+        }, indent=2) + '\n')
 
 
 if __name__ == '__main__':

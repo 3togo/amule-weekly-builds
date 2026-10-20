@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: launchpad-weekly
@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
       - run: sudo apt-get update && sudo apt-get install -y python3-launchpadlib
       - name: Request builds on Launchpad
         env:
@@ -37,4 +37,14 @@ jobs:
           read -ra series <<< "$LP_SERIES"
           /usr/bin/python3 packaging/launchpad/request-builds.py \
             --owner "$LP_OWNER" --ppa "$LP_PPA" --recipe "$LP_RECIPE" \
-            --series "${series[@]}" --credentials "$credential_file"
+            --series "${series[@]}" --credentials "$credential_file" \
+            --request-record status/last-request.json
+      - name: Record build requests
+        run: |
+          cat status/last-request.json >> "$GITHUB_STEP_SUMMARY"
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add status/last-request.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'Record weekly Launchpad build requests'
+          git push origin HEAD:main

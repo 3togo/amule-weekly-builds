@@ -8,7 +8,7 @@ leave **Build daily** unchecked for a weekly schedule.
 The public [PPA](https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly)
 and [recipe](https://code.launchpad.net/~freetogo/+recipe/amule-weekly) are configured
 for Ubuntu 24.04 (`noble`) and 26.04 (`resolute`), amd64. Daily builds are disabled.
-The private GitHub repository `3togo/amule-weekly-builds` owns the weekly schedule.
+The public GitHub repository `3togo/amule-weekly-builds` owns the weekly schedule.
 
 Both release targets were built locally from upstream commit
 `20feb713f709e2694e3558692ddcacfed2dd9047` on 2026-10-20. Package installation,
@@ -94,3 +94,7 @@ are available. Validate the resulting package with lintian and a clean install.
 References: [Launchpad recipe setup](https://ubuntu.com/docs/launchpad/user/how-to/source-package-recipe/),
 [Launchpad recipe API](https://api.launchpad.net/devel.html#source_package_recipe),
 [GitHub scheduled workflows](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#schedule).
+
+Successful workflow runs commit a public build-request record to keep the
+scheduler repository active. Repository contents write permission is used
+only for that record. Launchpad credentials stay in the Actions secret.
