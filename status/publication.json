@@ -1,0 +1,44 @@
+{
+  "request": {
+    "requested_at": "2026-10-20T17:36:59.280702+00:00",
+    "archive": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly",
+    "builds": [
+      {
+        "series": "noble",
+        "url": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+recipebuild/4103687"
+      },
+      {
+        "series": "resolute",
+        "url": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+recipebuild/4103688"
+      }
+    ]
+  },
+  "complete": false,
+  "builds": [
+    {
+      "series": "noble",
+      "recipe_build": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+recipebuild/4103687",
+      "published": false,
+      "binary_builds": [],
+      "recipe_state": "Uploading build",
+      "build_log": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+recipebuild/4103687/+files/buildlog.txt.gz",
+      "upload_log": null,
+      "version": "3.1.0+git202610201739~ubuntu24.04.1",
+      "source_states": [],
+      "stage": "Waiting for source upload/publication"
+    },
+    {
+      "series": "resolute",
+      "recipe_build": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+recipebuild/4103688",
+      "published": false,
+      "binary_builds": [],
+      "recipe_state": "Uploading build",
+      "build_log": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+recipebuild/4103688/+files/buildlog.txt.gz",
+      "upload_log": null,
+      "version": "3.1.0+git202610201739~ubuntu26.04.1",
+      "source_states": [],
+      "stage": "Waiting for source upload/publication"
+    }
+  ],
+  "updated_at": "2026-10-20T17:56:46.308717+00:00"
+}
