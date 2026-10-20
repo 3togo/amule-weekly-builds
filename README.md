@@ -7,7 +7,7 @@ This repository requests weekly builds of [amule-org/amule](https://github.com/a
 - Ubuntu targets: 24.04 (noble) and 26.04 (resolute), amd64
 - Schedule: Mondays at 03:17 UTC, plus manual workflow dispatch
 
-Launchpad imports upstream master and builds the packages. GitHub Actions only requests builds. Launchpad's daily build option stays disabled.
+Launchpad imports upstream master and builds the packages. GitHub Actions requests builds and monitors publication. Launchpad's daily build option stays disabled.
 
 The scheduler uses free runners in this public repository. Each successful weekly run commits a build-request record, keeping the repository active. The source and packaging are also public on Launchpad.
 
@@ -29,4 +29,10 @@ The package includes the desktop client, daemon, remote GUI, command-line client
 
 ## Build status
 
-The [first request workflow](https://github.com/3togo/amule-weekly-builds/actions/runs/39467566079) completed successfully. [Latest request records](status/last-request.json) link to the Launchpad source builds. Check the PPA for the resulting binary builds and published packages.
+The [publication monitor](https://github.com/3togo/amule-weekly-builds/actions/workflows/publication.yml) checks both requested Ubuntu builds every 10 minutes on GitHub-hosted runners, including when your computer is off. GitHub may delay scheduled runs. You can also run it manually from Actions.
+
+[Latest request records](status/last-request.json) identify the source builds. The monitor reads the exact source version from each build log, follows its binary builds, and requires both Launchpad's Published status and that exact version in the corresponding amd64 APT package index. Old packages cannot satisfy a new request.
+
+Progress changes are committed to `status/publication.json`. Each run has a summary with build links; failed builds or HTTP/API errors fail the workflow with diagnostic annotations. Pending publication is a successful check, not a claim that packages are ready. Configure GitHub Actions notifications in your GitHub account to receive failed-run alerts.
+
+Once both versions are available, scheduled runs skip network polling. The next weekly request automatically starts monitoring again. This monitor uses public endpoints and needs no Launchpad credentials. It reports blockers; packaging fixes still require a code change.

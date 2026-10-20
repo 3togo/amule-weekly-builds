@@ -1,0 +1,37 @@
+name: Monitor PPA publication
+
+on:
+  schedule:
+    - cron: '7,17,27,37,47,57 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# Serialize with the weekly request writer to preserve both status records.
+concurrency:
+  group: launchpad-weekly
+  cancel-in-progress: false
+
+jobs:
+  check-publication:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - name: Read latest build requests
+        run: git pull --ff-only origin main
+      - name: Verify publication detection
+        run: python3 -m unittest discover -s packaging/launchpad -p test_publication.py
+      - name: Check both builds and PPA indexes
+        run: python3 packaging/launchpad/check-publication.py
+      - name: Record publication progress
+        if: always()
+        run: |
+          test -f status/publication.json || exit 0
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add status/publication.json
+          git diff --cached --quiet && exit 0
+          git commit -m 'Record Launchpad publication progress'
+          git push origin HEAD:main
