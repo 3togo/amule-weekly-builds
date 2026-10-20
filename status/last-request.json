@@ -1,8 +1,7 @@
 {
-  "requested_at": "2026-10-20T19:40:54.287684+00:00",
+  "requested_at": "2026-10-20T19:44:09.718608+00:00",
   "archive": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly",
-  "method": "recipe-and-manual-sftp",
-  "source_commit": "20feb713f709e2694e3558692ddcacfed2dd9047",
+  "method": "recipe",
   "builds": [
     {
       "series": "noble",
@@ -14,8 +13,8 @@
     },
     {
       "series": "stonking",
-      "url": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly",
-      "version": "3.1.0+git202610201807+manual1~ubuntu26.10.1"
+      "url": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+recipebuild/4103830"
     }
-  ]
+  ],
+  "recipe": "https://code.launchpad.net/~freetogo/+recipe/amule-weekly"
 }
