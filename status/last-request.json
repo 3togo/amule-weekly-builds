@@ -1,20 +1,19 @@
 {
-  "requested_at": "2026-10-20T19:44:09.718608+00:00",
+  "requested_at": "2026-10-26T09:24:00.406398+00:00",
+  "recipe": "https://code.launchpad.net/~freetogo/+recipe/amule-weekly",
   "archive": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly",
-  "method": "recipe",
   "builds": [
     {
       "series": "noble",
-      "url": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+recipebuild/4103687"
+      "url": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+recipebuild/4106162"
     },
     {
       "series": "resolute",
-      "url": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+recipebuild/4103688"
+      "url": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+recipebuild/4106163"
     },
     {
       "series": "stonking",
-      "url": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+recipebuild/4103830"
+      "url": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+recipebuild/4106164"
     }
-  ],
-  "recipe": "https://code.launchpad.net/~freetogo/+recipe/amule-weekly"
+  ]
 }
