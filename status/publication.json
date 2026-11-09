@@ -1,19 +1,19 @@
 {
   "request": {
-    "requested_at": "2026-11-02T11:19:59.278519+00:00",
+    "requested_at": "2026-11-09T11:42:58.057861+00:00",
     "archive": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly",
     "builds": [
       {
         "series": "noble",
-        "url": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+recipebuild/4109054"
+        "url": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+recipebuild/4112372"
       },
       {
         "series": "resolute",
-        "url": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+recipebuild/4109057"
+        "url": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+recipebuild/4112373"
       },
       {
         "series": "stonking",
-        "url": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+recipebuild/4109058"
+        "url": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+recipebuild/4112374"
       }
     ]
   },
@@ -21,70 +21,34 @@
   "builds": [
     {
       "series": "noble",
-      "recipe_build": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+recipebuild/4109054",
+      "recipe_build": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+recipebuild/4112372",
       "published": false,
-      "binary_builds": [
-        {
-          "url": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+build/33902541",
-          "state": "Failed to build",
-          "log": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+build/33902541/+files/buildlog_ubuntu-noble-amd64.amule-weekly_3.1.0+git202611021129~ubuntu24.04.1_BUILDING.txt.gz",
-          "architecture": "amd64"
-        }
-      ],
-      "recipe_state": "Successfully built",
-      "build_log": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+recipebuild/4109054/+files/buildlog.txt.gz",
+      "binary_builds": [],
+      "recipe_state": "Needs building",
+      "build_log": null,
       "upload_log": null,
-      "version": "3.1.0+git202611021129~ubuntu24.04.1",
-      "source_states": [
-        "Published"
-      ],
-      "stage": "Waiting for amd64 binary publication",
-      "error": "Binary build: Failed to build"
+      "stage": "Waiting for source build"
     },
     {
       "series": "resolute",
-      "recipe_build": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+recipebuild/4109057",
+      "recipe_build": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+recipebuild/4112373",
       "published": false,
-      "binary_builds": [
-        {
-          "url": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+build/33903326",
-          "state": "Failed to build",
-          "log": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+build/33903326/+files/buildlog_ubuntu-resolute-amd64.amule-weekly_3.1.0+git202611021218~ubuntu26.04.1_BUILDING.txt.gz",
-          "architecture": "amd64"
-        }
-      ],
-      "recipe_state": "Successfully built",
-      "build_log": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+recipebuild/4109057/+files/buildlog.txt.gz",
+      "binary_builds": [],
+      "recipe_state": "Needs building",
+      "build_log": null,
       "upload_log": null,
-      "version": "3.1.0+git202611021218~ubuntu26.04.1",
-      "source_states": [
-        "Published"
-      ],
-      "stage": "Waiting for amd64 binary publication",
-      "error": "Binary build: Failed to build"
+      "stage": "Waiting for source build"
     },
     {
       "series": "stonking",
-      "recipe_build": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+recipebuild/4109058",
+      "recipe_build": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+recipebuild/4112374",
       "published": false,
-      "binary_builds": [
-        {
-          "url": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+build/33902462",
-          "state": "Failed to build",
-          "log": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+build/33902462/+files/buildlog_ubuntu-stonking-amd64.amule-weekly_3.1.0+git202611021128~ubuntu26.10.1_BUILDING.txt.gz",
-          "architecture": "amd64"
-        }
-      ],
-      "recipe_state": "Successfully built",
-      "build_log": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+recipebuild/4109058/+files/buildlog.txt.gz",
+      "binary_builds": [],
+      "recipe_state": "Needs building",
+      "build_log": null,
       "upload_log": null,
-      "version": "3.1.0+git202611021128~ubuntu26.10.1",
-      "source_states": [
-        "Published"
-      ],
-      "stage": "Waiting for amd64 binary publication",
-      "error": "Binary build: Failed to build"
+      "stage": "Waiting for source build"
     }
   ],
-  "updated_at": "2026-11-02T18:51:45.899832+00:00"
+  "updated_at": "2026-11-09T16:28:31.193451+00:00"
 }
