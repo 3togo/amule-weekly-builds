@@ -17,17 +17,17 @@
       }
     ]
   },
-  "complete": false,
+  "complete": true,
   "builds": [
     {
       "series": "noble",
       "recipe_build": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+recipebuild/4112372",
-      "published": false,
+      "published": true,
       "binary_builds": [
         {
           "url": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+build/33952118",
-          "state": "Needs building",
-          "log": null,
+          "state": "Successfully built",
+          "log": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+build/33952118/+files/buildlog_ubuntu-noble-amd64.amule-weekly_3.1.0+git202611091819~ubuntu24.04.1_BUILDING.txt.gz",
           "architecture": "amd64"
         }
       ],
@@ -38,17 +38,18 @@
       "source_states": [
         "Published"
       ],
-      "stage": "Waiting for amd64 binary publication"
+      "stage": "Published in PPA and APT index",
+      "apt_index": "https://ppa.launchpadcontent.net/freetogo/amule-weekly/ubuntu/dists/noble/main/binary-amd64/Packages.gz"
     },
     {
       "series": "resolute",
       "recipe_build": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+recipebuild/4112373",
-      "published": false,
+      "published": true,
       "binary_builds": [
         {
           "url": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+build/33952141",
-          "state": "Needs building",
-          "log": null,
+          "state": "Successfully built",
+          "log": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+build/33952141/+files/buildlog_ubuntu-resolute-amd64.amule-weekly_3.1.0+git202611091821~ubuntu26.04.1_BUILDING.txt.gz",
           "architecture": "amd64"
         }
       ],
@@ -59,17 +60,18 @@
       "source_states": [
         "Published"
       ],
-      "stage": "Waiting for amd64 binary publication"
+      "stage": "Published in PPA and APT index",
+      "apt_index": "https://ppa.launchpadcontent.net/freetogo/amule-weekly/ubuntu/dists/resolute/main/binary-amd64/Packages.gz"
     },
     {
       "series": "stonking",
       "recipe_build": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+recipebuild/4112374",
-      "published": false,
+      "published": true,
       "binary_builds": [
         {
           "url": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+build/33952139",
-          "state": "Needs building",
-          "log": null,
+          "state": "Successfully built",
+          "log": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+build/33952139/+files/buildlog_ubuntu-stonking-amd64.amule-weekly_3.1.0+git202611091821~ubuntu26.10.1_BUILDING.txt.gz",
           "architecture": "amd64"
         }
       ],
@@ -80,8 +82,9 @@
       "source_states": [
         "Published"
       ],
-      "stage": "Waiting for amd64 binary publication"
+      "stage": "Published in PPA and APT index",
+      "apt_index": "https://ppa.launchpadcontent.net/freetogo/amule-weekly/ubuntu/dists/stonking/main/binary-amd64/Packages.gz"
     }
   ],
-  "updated_at": "2026-11-10T00:24:19.669634+00:00"
+  "updated_at": "2026-11-10T07:37:04.477086+00:00"
 }
