@@ -23,32 +23,65 @@
       "series": "noble",
       "recipe_build": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+recipebuild/4112372",
       "published": false,
-      "binary_builds": [],
-      "recipe_state": "Needs building",
-      "build_log": null,
+      "binary_builds": [
+        {
+          "url": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+build/33952118",
+          "state": "Needs building",
+          "log": null,
+          "architecture": "amd64"
+        }
+      ],
+      "recipe_state": "Successfully built",
+      "build_log": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+recipebuild/4112372/+files/buildlog.txt.gz",
       "upload_log": null,
-      "stage": "Waiting for source build"
+      "version": "3.1.0+git202611091819~ubuntu24.04.1",
+      "source_states": [
+        "Published"
+      ],
+      "stage": "Waiting for amd64 binary publication"
     },
     {
       "series": "resolute",
       "recipe_build": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+recipebuild/4112373",
       "published": false,
-      "binary_builds": [],
-      "recipe_state": "Needs building",
-      "build_log": null,
+      "binary_builds": [
+        {
+          "url": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+build/33952141",
+          "state": "Needs building",
+          "log": null,
+          "architecture": "amd64"
+        }
+      ],
+      "recipe_state": "Successfully built",
+      "build_log": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+recipebuild/4112373/+files/buildlog.txt.gz",
       "upload_log": null,
-      "stage": "Waiting for source build"
+      "version": "3.1.0+git202611091821~ubuntu26.04.1",
+      "source_states": [
+        "Published"
+      ],
+      "stage": "Waiting for amd64 binary publication"
     },
     {
       "series": "stonking",
       "recipe_build": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+recipebuild/4112374",
       "published": false,
-      "binary_builds": [],
-      "recipe_state": "Needs building",
-      "build_log": null,
+      "binary_builds": [
+        {
+          "url": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+build/33952139",
+          "state": "Needs building",
+          "log": null,
+          "architecture": "amd64"
+        }
+      ],
+      "recipe_state": "Successfully built",
+      "build_log": "https://launchpad.net/~freetogo/+archive/ubuntu/amule-weekly/+recipebuild/4112374/+files/buildlog.txt.gz",
       "upload_log": null,
-      "stage": "Waiting for source build"
+      "version": "3.1.0+git202611091821~ubuntu26.10.1",
+      "source_states": [
+        "Published"
+      ],
+      "stage": "Waiting for amd64 binary publication"
     }
   ],
-  "updated_at": "2026-11-09T16:28:31.193451+00:00"
+  "updated_at": "2026-11-10T00:24:19.669634+00:00"
 }
